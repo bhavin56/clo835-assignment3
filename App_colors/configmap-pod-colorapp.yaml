@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: colorapp-by-configmap
+  labels:
+    app: color-app
+    owner: bhavin
+spec:
+  containers:
+  - image: mmumshad/simple-webapp-color:latest
+    env:
+    - name: APP_COLOR
+      valueFrom: 
+        configMapKeyRef:
+          name: color-config
+          key: fav-color
+    name: colorapp2
+    ports:
+    - containerPort: 8080
+      protocol: TCP
